@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import { observer } from "mobx-react";
 
-function App() {
+import "./App.css";
+import Todo from "./components/Todo/Todo";
+import store from "./store/TodoStore";
+import Counter from "./components/Counter";
+
+const App = observer(() => {
+  const context = useContext(store);
+  var { person, todo } = context;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Todo person={person} todo={todo} context={context} />
+      {/* <Counter person={person} /> */}
     </div>
   );
-}
+});
 
 export default App;
